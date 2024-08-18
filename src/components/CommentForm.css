@@ -112,3 +112,26 @@
     background-color:skyblue;
   }
   
+
+  .sign-out-container{
+    display: flex;
+    align-content: space-between !important;
+    gap: 40% !important;
+    margin-bottom: 2% !important;
+  }
+
+  .profile{
+    display: flex !important;
+    gap: 1rem !important;
+  }
+
+  .username{
+    width: 200px !important;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+  }
+
+  .sign-in-container{
+    margin-left: 67% !important;
+    margin-bottom: 2% !important;
+  }

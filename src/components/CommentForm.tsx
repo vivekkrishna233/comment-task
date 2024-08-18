@@ -9,6 +9,7 @@ import {
     ListItemText,
 } from "@mui/material";
 import { AttachFile } from "@mui/icons-material";
+
 import { toast } from "react-toastify";
 import {
     getFirestore,
@@ -242,6 +243,16 @@ const CommentForm: React.FC = () => {
                 </div>
             ) : (
                 <div className="sign-out-container">
+                     <div className="profile">
+                     {user && (
+                        <Avatar
+                            alt={user.displayName || ""}
+                            src={user.photoURL || ""}
+                            className="avatar"
+                        />
+                    )}
+                    <p className="username">{user.displayName || " "}</p>
+                     </div>
                     <Button onClick={handleSignOut} variant="contained" color="secondary">
                         Sign out
                     </Button>
@@ -255,15 +266,7 @@ const CommentForm: React.FC = () => {
                 </div>
             </div>
             <Grid container alignItems="center" className="comment-input-container">
-                <Grid item xs={1}>
-                    {user && (
-                        <Avatar
-                            alt={user.displayName || ""}
-                            src={user.photoURL || ""}
-                            className="avatar"
-                        />
-                    )}
-                </Grid>
+                
                 <Grid item xs={11} style={{ position: "relative" }}>
                     <div
                         ref={textRef}
