@@ -25,6 +25,7 @@ import { toast } from "react-toastify"; // Assuming you're using react-toastify 
 import { useAuth } from "../AuthProvider";
 
 interface Reply {
+  namr: any;
   id: string;
   body: string;
   fileUrl: string;
@@ -131,10 +132,10 @@ const ReplyComment: React.FC<ReplyCommentProps> = ({ commentId }) => {
       const response = await addDoc(collection(firestore, "Reply"), {
         body: textContent, // Plain text content
         fileUrl,
-        mentions: mentionList, // Array of mentioned user UIDs
-        author: `Users/${user?.uid}`, // Replace with actual user reference
-        commentId: `comments/${commentId}`, // Replace with actual comment reference
-        createdAt: serverTimestamp(),
+        mentions: mentionList, 
+        author: `Users/${user?.uid}`,
+        namr: `${user?.displayName}`,
+        commentId: `comments/${commentId}`, 
       });
 
       console.log("Reply added with ID: ", response.id); // Log the ID of the added reply
@@ -149,6 +150,7 @@ const ReplyComment: React.FC<ReplyCommentProps> = ({ commentId }) => {
       console.error("Error creating reply:", error);
       toast.error("Failed to create reply.");
     }
+    window.location.reload();
   };
 
   return (
@@ -200,7 +202,7 @@ const ReplyComment: React.FC<ReplyCommentProps> = ({ commentId }) => {
                   <Avatar alt="User" src="https://via.placeholder.com/150" />
                   <ListItemText
                     primary={reply.body}
-                    secondary={`Posted by ${reply.author}`}
+                    secondary={`Posted by ${reply.namr}`}
                   />
                 </ListItem>
               ))}

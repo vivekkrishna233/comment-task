@@ -39,6 +39,7 @@ interface User {
     uid: string;
     displayName: string;
     email: string;
+    photo:string;
 }
 
 const CommentForm: React.FC = () => {
@@ -77,6 +78,7 @@ const CommentForm: React.FC = () => {
                         uid: data.uid,
                         displayName: data.displayName,
                         email: data.email,
+                        photo: data.photo,
                     };
                 });
 
@@ -182,6 +184,8 @@ const CommentForm: React.FC = () => {
         setFile(null);
         setMentionSuggestions([]);
         setShowMentions(false);
+        window.location.reload();
+
     };
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => setFile(e.target.files ? e.target.files[0] : null);
